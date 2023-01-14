@@ -1,6 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(document).ready(function () {
 
   let timeNow = dayjs().format('MMMM D, YYYY'); //current date listed at top of page
@@ -36,11 +33,11 @@ $(document).ready(function () {
   timeCheck()
 
 
-  saveButton.on('click', () => {
+  saveButton.on('click', (event) => {
     console.log("Testing")
     let textToSave = description.val();
-    let timeStamp = parseInt(($(this)).attr('id'));
-    localStorage.setItem(timeStamp, textToSave); //<<< textToSave needs to go in second argument here but I can't get it to work
+    let timeOfClick = dayjs().format('h:mm');
+    localStorage.setItem(timeOfClick, textToSave); //<<< textToSave needs to go in second argument here but I can't get it to work for anything but the 9 AM slot
   });
 
 
@@ -52,7 +49,7 @@ $(document).ready(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  // TODO: Add code to apply the past, present, or future class to each time
+  // DONE: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
