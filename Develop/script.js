@@ -3,12 +3,48 @@
 // in the html.
 $(document).ready(function () {
 
-  var time = dayjs().format('MMMM D, YYYY');
-  $('#currentDay').text(time);
+  let timeNow = dayjs().format('MMMM D, YYYY'); //current date listed at top of page
+  let hourOfDay = dayjs().format('H'); //current hour of the day using day.js
+  let hourOnPlanner = $(".hour"); //hour listed on the left side of planner
+  let writeHere = $(".time-block"); //div that contains all elements for each time slot
+  let description = $(".description"); //where to write your to-do information
+  let saveButton = $(".saveBtn"); //targets the save buttons
+
+  $('#currentDay').text(timeNow); //displays current time at the top of the page
+
+  console.log(hourOfDay);
+  console.log(hourOnPlanner);
+
+  // this function compares the current time to the time on the planner and adds or removes bootstrap classes which change the color to let us know if its in the past, present or future. This should display upon opening the page. 
+  function timeCheck() {
+    writeHere.each(function () {
+      let timeId = parseInt(($(this)).attr('id'));
+      let textarea = $(this).children(description);
+
+      if (timeId == hourOfDay) {
+        textarea.addClass('present');
+
+      } else if (timeId < hourOfDay) {
+        textarea.addClass('past');
+
+      } else {
+        textarea.addClass('future');
+      }
+    })
+  }
+
+  timeCheck()
 
 
-});
+  saveButton.on('click', () => {
+    console.log("Testing")
+    let textToSave = description.val();
+    let timeStamp = parseInt(($(this)).attr('id'));
+    localStorage.setItem(timeStamp, textToSave); //<<< textToSave needs to go in second argument here but I can't get it to work
+  });
 
+
+})
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -26,4 +62,4 @@ $(document).ready(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // DONE: Add code to display the current date in the header of the page.
