@@ -10,7 +10,7 @@ This is a simple work planner that allows a user to save events for each hour of
 
 ## Screenshot
 
-![screenshot](./Assets/screencapture-file-Users-kellymclain-bootcamp-Homework-Work-Planner-Work-Planner-Develop-index-html-2023-01-15-21_14_04.png)
+![screenshot](./Assets/WDS.png)
 
 ## User Story
 
