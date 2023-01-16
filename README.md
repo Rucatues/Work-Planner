@@ -2,7 +2,7 @@
 
 ## Quick Links
 
-[Click Here](www.google.com) to go to the website. 
+[Click Here](https://rucatues.github.io/Work-Planner/) to go to the website. 
 
 ## Description
 
